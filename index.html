@@ -1,209 +1,871 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AG Core Aeration – Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EL76J15J00"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EL76J15J00');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG Core Aeration — Professional Lawn Renovation · Mount Duneed</title>
+<meta name="description" content="Professional lawn aeration, scarification and renovation services in Mount Duneed and surrounding suburbs. Free quotes, fast response.">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Critical variables — mirrors _shared.js */
+:root {
+  --bg: #0D0D0D; --bg2: #131313; --card: #1C1C1C;
+  --border: #272727;
+  --white: #FFFFFF; --dim: rgba(255,255,255,0.48); --dimmer: rgba(255,255,255,0.22);
+  --accent: #1E7B34; --accent2: #196A2C; --accent-light: #1E7B34;
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --radius: 12px; --max: 1100px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+.container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+.accent { color: var(--accent-light); }
+.section-title { font-family: var(--font-head); font-size: clamp(2rem,4vw,3.2rem); font-weight: 900; text-transform: uppercase; line-height: 1.0; letter-spacing: 0.01em; margin-bottom: 14px; }
+.section-sub { font-size: 0.95rem; color: var(--dim); max-width: 520px; line-height: 1.75; margin-bottom: 44px; }
+.section-tag { margin-bottom: 18px; }
+.tag { display: inline-flex; align-items: center; gap: 7px; background: rgba(30,123,52,0.1); border: 1px solid rgba(30,123,52,0.25); color: var(--accent-light); font-family: var(--font-head); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; }
+.tag-dot { width: 5px; height: 5px; background: var(--accent-light); border-radius: 50%; }
+.btn-primary { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 14px 28px; font-family: var(--font-head); font-size: 1rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block; }
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+.btn-ghost { background: none; color: var(--dim); border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 24px; font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, color 0.2s; text-decoration: none; display: inline-block; }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-light); }
+@media (max-width: 900px) { .container { padding: 0 20px; } }
 
-    :root {
-      --black:      #000000;
-      --green-mid:  #2d7a2d;
-      --green-bright: #4db84d;
-      --green-light: #6fd46f;
-      --white:      #ffffff;
-      --grey:       #aaaaaa;
-    }
+/* ── HERO ── */
+.hero {
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+  padding-top: 64px;
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px 80px 0;
+  position: relative;
+  z-index: 2;
+}
+.hero-left .section-tag { margin-bottom: 22px; }
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(3.2rem, 6vw, 5.6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.93;
+  letter-spacing: 0.01em;
+  margin-bottom: 22px;
+}
+.hero-sub {
+  font-size: 1rem;
+  color: var(--dim);
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.trust-item {
+  display: flex;
+  flex-direction: column;
+}
+.trust-num {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--accent-light);
+  line-height: 1;
+}
+.trust-label {
+  font-size: 0.72rem;
+  color: var(--dimmer);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+.trust-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+}
 
-    html, body {
-      height: 100%;
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;
-    }
+/* Hero image */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--bg) 0%, rgba(13,13,13,0.15) 40%, transparent 100%);
+  z-index: 1;
+}
+.hero-service-area {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2;
+  background: rgba(13,13,13,0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-service-area span {
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+.hero-service-area strong {
+  color: var(--white);
+  font-weight: 600;
+}
+.hero-price-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  background: var(--accent);
+  border-radius: 10px;
+  padding: 10px 16px;
+  text-align: center;
+}
+.hero-price-badge .from { font-size: 0.65rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; }
+.hero-price-badge .price { font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; color: #fff; line-height: 1; }
+.hero-price-badge .what { font-size: 0.65rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
 
-    /* ── Animated dot-grid background ── */
-    .bg-dots {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
+/* ── SERVICES STRIP ── */
+.services-strip { padding: 80px 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.services-strip-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; flex-wrap: wrap; gap: 20px; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.svc-card {
+  background: var(--card);
+  border: 1.5px solid #C4D9BA;
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.svc-card:hover { transform: translateY(-3px); border-color: rgba(30,123,52,0.4); box-shadow: 0 6px 28px rgba(30,123,52,0.1); }
+.svc-card:hover::after { transform: scaleX(1); }
+.svc-icon { font-size: 28px; margin-bottom: 14px; }
+.svc-card h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; color: #fff; }
+.svc-card p { font-size: 0.83rem; color: var(--dim); line-height: 1.65; }
+.svc-price { display: inline-block; margin-top: 14px; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; color: var(--accent-light); letter-spacing: 0.06em; }
 
-    .bg-dots span {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--green-mid);
-      opacity: 0;
-      animation: pulse-dot 4s ease-in-out infinite;
-    }
+/* ── WHY US ── */
+.why { padding: 88px 0; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.why-img-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+.why-img-item {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.why-img-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+.why-img-item:hover img { transform: scale(1.04); }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 0; transform: scale(0.8); }
-      50%       { opacity: 0.35; transform: scale(1.3); }
-    }
+.why-items { display: flex; flex-direction: column; gap: 22px; margin-top: 32px; }
+.why-item { display: flex; gap: 16px; align-items: flex-start; }
+.why-ic {
+  width: 42px; height: 42px;
+  background: rgba(30,123,52,0.1);
+  border: 1px solid rgba(30,123,52,0.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.why-item h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 3px; }
+.why-item p { font-size: 0.83rem; color: var(--dim); line-height: 1.65; }
 
-    /* ── Main layout ── */
-    .page {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
-      gap: 0;
-    }
+/* ── GALLERY STRIP ── */
+.gallery-strip { padding: 88px 0; background: var(--bg2); border-top: 1px solid var(--border); }
+.gallery-strip-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; flex-wrap: wrap; gap: 16px; }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+}
+.photo-item {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.photo-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+.photo-item:hover img { transform: scale(1.04); }
+.photo-item:nth-child(1) { grid-column: span 4; aspect-ratio: 3/4; }
+.photo-item:nth-child(2) { grid-column: span 4; aspect-ratio: 3/4; }
+.photo-item:nth-child(3) { grid-column: span 4; aspect-ratio: 3/4; }
+.photo-item:nth-child(4) { grid-column: span 4; aspect-ratio: 3/4; }
+.photo-item:nth-child(5) { grid-column: span 4; aspect-ratio: 3/4; }
+.photo-item:nth-child(6) { grid-column: span 4; aspect-ratio: 3/4; }
 
-    /* ── Logo ── */
-    .logo-wrap {
-      margin-bottom: 2.8rem;
-      animation: fade-up 1s ease both;
-    }
+/* ── PRICING ── */
+.pricing { padding: 88px 0; border-top: 1px solid var(--border); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.price-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.price-card:hover { border-color: rgba(30,123,52,0.35); transform: translateY(-3px); }
+.price-card.featured {
+  border-color: var(--accent);
+  background: linear-gradient(160deg, #0f1f0a 0%, var(--card) 100%);
+}
+.price-featured-badge {
+  position: absolute;
+  top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.price-name {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.price-desc { font-size: 0.82rem; color: var(--dim); line-height: 1.6; margin-bottom: 20px; }
+.price-from { font-size: 0.7rem; color: var(--dimmer); text-transform: uppercase; letter-spacing: 0.1em; }
+.price-num {
+  font-family: var(--font-head);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--accent-light);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.price-note { font-size: 0.73rem; color: var(--dimmer); margin-bottom: 24px; }
+.price-includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.price-includes li {
+  font-size: 0.82rem;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.price-includes li::before {
+  content: '✓';
+  color: var(--accent-light);
+  font-weight: 700;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+.pricing-note {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 0.83rem;
+  color: var(--dimmer);
+}
+.pricing-note a { color: var(--accent-light); text-decoration: none; }
+.pricing-note a:hover { text-decoration: underline; }
 
-    .logo-wrap img {
-      width: clamp(180px, 30vw, 280px);
-      height: auto;
-      filter: drop-shadow(0 0 32px rgba(77, 184, 77, 0.25));
-    }
+/* ── SERVICE AREA ── */
+.service-area { padding: 88px 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 48px; }
+.area-map {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.area-map::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(30,123,52,0.08) 0%, transparent 70%);
+}
+.area-pin { font-size: 48px; position: relative; z-index: 1; }
+.area-map h3 {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  position: relative; z-index: 1;
+}
+.area-map p { font-size: 0.85rem; color: var(--dim); position: relative; z-index: 1; }
+.area-suburbs { display: flex; flex-wrap: wrap; gap: 8px; }
+.suburb-chip {
+  background: rgba(30,123,52,0.08);
+  border: 1px solid rgba(30,123,52,0.2);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+}
+.suburb-chip.main {
+  background: rgba(30,123,52,0.18);
+  border-color: rgba(30,123,52,0.4);
+  color: var(--accent-light);
+  font-weight: 600;
+}
+.area-cta { margin-top: 28px; }
+.area-cta p { font-size: 0.85rem; color: var(--dim); margin-bottom: 16px; line-height: 1.7; }
 
-    /* ── Divider line ── */
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--green-bright), transparent);
-      margin: 0 auto 2.6rem;
-      animation: fade-up 1s 0.2s ease both;
-    }
+/* ── QUOTE SECTION ── */
+.quote-section { padding: 88px 0; }
+.quote-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+.quote-info .section-title { margin-bottom: 16px; }
+.quote-info .section-sub { margin-bottom: 28px; }
+.contact-cards { display: flex; flex-direction: column; gap: 12px; }
+.contact-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.contact-card:hover { border-color: rgba(30,123,52,0.4); }
+.cc-icon {
+  width: 38px; height: 38px;
+  background: rgba(30,123,52,0.1);
+  border: 1px solid rgba(30,123,52,0.2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.cc-label { font-size: 0.68rem; color: var(--dimmer); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
+.cc-val { font-size: 0.9rem; color: var(--white); font-weight: 500; }
+.reply-promise {
+  margin-top: 20px;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(30,123,52,0.06);
+  border: 1px solid rgba(30,123,52,0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+.reply-promise span { font-size: 0.82rem; color: var(--dim); line-height: 1.5; }
+.reply-promise strong { color: var(--white); }
 
-    /* ── Heading ── */
-    h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      line-height: 1;
-      background: linear-gradient(135deg, var(--green-light) 0%, var(--green-bright) 50%, var(--green-mid) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fade-up 1s 0.3s ease both;
-      margin-bottom: 1.4rem;
-    }
+.demo-wrap {
+  background: #111;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.demo-bar {
+  background: #1a1a1a;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.wd { width: 10px; height: 10px; border-radius: 50%; }
+.demo-bar span {
+  margin-left: 8px;
+  font-size: 0.7rem;
+  color: var(--dimmer);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.demo-frame {
+  width: 100%;
+  height: 580px;
+  border: none;
+  display: block;
+}
 
-    /* ── Sub-message ── */
-    .sub {
-      font-size: clamp(0.85rem, 2.2vw, 1.05rem);
-      font-weight: 300;
-      color: var(--grey);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      animation: fade-up 1s 0.45s ease both;
-      margin-bottom: 3rem;
-    }
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: 100vh; display: grid; position: relative; }
+  .hero-right { position: absolute; inset: 0; height: 100%; z-index: 0; }
+  .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: bottom center; opacity: 0.35; }
+  .hero-img-overlay { background: linear-gradient(135deg, rgba(13,13,13,0.88) 0%, rgba(13,13,13,0.55) 50%, rgba(13,13,13,0.25) 100%); }
+  .hero-left { position: relative; z-index: 1; padding: 120px 24px 60px; }
 
-    /* ── Dot-row accent (mirrors logo motif) ── */
-    .dot-row {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      animation: fade-up 1s 0.6s ease both;
-    }
+  .svc-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .why-img-wrap { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .area-grid { grid-template-columns: 1fr; gap: 36px; }
+  .quote-inner { grid-template-columns: 1fr; gap: 40px; }
 
-    .dot-row span {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green-bright);
-      opacity: 0.5;
-      animation: blink 2.4s ease-in-out infinite;
-    }
+  .photo-grid { grid-template-columns: 1fr 1fr; }
+  .photo-item { grid-column: span 1 !important; aspect-ratio: 4/3 !important; }
 
-    .dot-row span:nth-child(2) { animation-delay: 0.4s; }
-    .dot-row span:nth-child(3) { animation-delay: 0.8s; }
-    .dot-row span:nth-child(4) { animation-delay: 1.2s; }
-    .dot-row span:nth-child(5) { animation-delay: 1.6s; }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0.2; transform: scale(0.85); }
-      50%       { opacity: 0.9; transform: scale(1.2); }
-    }
-
-    /* ── Animations ── */
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Footer ── */
-    footer {
-      position: fixed;
-      bottom: 1.6rem;
-      left: 0; right: 0;
-      text-align: center;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      color: #444;
-      text-transform: uppercase;
-      animation: fade-up 1s 0.9s ease both;
-    }
-
-    @media (max-width: 480px) {
-      .logo-wrap { margin-bottom: 2rem; }
-      .sub { margin-bottom: 2.2rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; }
-    }
-  </style>
+  .hero-price-badge { top: 16px; right: 16px; }
+  .hero-service-area { bottom: 16px; right: 16px; }
+}
+</style>
 </head>
 <body>
-
-  <!-- Animated background dots -->
-  <div class="bg-dots" id="bgDots"></div>
-
-  <main class="page">
-    <div class="logo-wrap">
-      <img src="IMG_0614.PNG" alt="AG Core Aeration logo" />
+<style>
+.inline-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,10,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.08); }
+.inline-nav-inner { max-width:1100px; margin:0 auto; padding:0 40px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+.inline-nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.inline-nav-links { display:flex; align-items:center; gap:32px; }
+.inline-nav-links a { color:rgba(255,255,255,0.6); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+.inline-nav-links a.active { color:#2a9d47; }
+.inline-nav-links a:hover { color:#fff; }
+.inline-nav-cta { background:#1E7B34; color:#fff !important; padding:9px 20px; border-radius:7px; text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:0.82rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
+.inline-nav-cta:hover { background:#196A2C !important; }
+.inline-hamburger { display:none; background:none; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-size:18px; width:38px; height:38px; cursor:pointer; align-items:center; justify-content:center; }
+.inline-mobile-menu { display:none; flex-direction:column; gap:2px; padding:10px 20px 18px; border-top:1px solid rgba(255,255,255,0.08); background:rgba(10,10,10,0.99); }
+.inline-mobile-menu.open { display:flex; }
+.inline-mobile-menu a { color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:12px 14px; border-radius:8px; display:block; }
+.inline-mobile-menu a.active { color:#2a9d47; }
+.inline-mobile-menu a:hover { background:rgba(255,255,255,0.05); color:#fff; }
+.inline-mobile-cta { margin-top:8px; background:#1E7B34; color:#fff !important; border-radius:10px; padding:13px 20px; text-align:center; }
+@media (max-width:900px) {
+  .inline-nav-inner { padding:0 20px; }
+  .inline-nav-links { display:none; }
+  .inline-hamburger { display:flex; }
+}
+</style>
+<nav class="inline-nav">
+  <div class="inline-nav-inner">
+    <a href="index.html" class="inline-nav-logo">
+      <img src="images/AG_Core_Logo_Dots.PNG" alt="AG Core Logo" style="width:28px;height:28px;">
+      <img src="images/AG_Core_Logo_Tr-Text.PNG" alt="AG Core Aeration" style="height:32px;width:auto;display:block;">
+    </a>
+    <div class="inline-nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="inline-nav-cta">Get a Quote</a>
     </div>
+    <button class="inline-hamburger" id="inlineHamburger" onclick="toggleInlineMenu()">☰</button>
+  </div>
+  <div class="inline-mobile-menu" id="inlineMobileMenu">
+    <a href="index.html" class="active">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="inline-mobile-cta">Get a Free Quote →</a>
+  </div>
+</nav>
+<div id="site-nav" style="display:none;"></div>
+<script>
+function toggleInlineMenu() {
+  const menu = document.getElementById('inlineMobileMenu');
+  const btn = document.getElementById('inlineHamburger');
+  menu.classList.toggle('open');
+  btn.textContent = menu.classList.contains('open') ? '✕' : '☰';
+}
+</script>
 
-    <div class="divider"></div>
-
-    <h1>Coming Soon</h1>
-
-    <p class="sub">Website Germinating</p>
-
-    <div class="dot-row">
-      <span></span><span></span><span></span><span></span><span></span>
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-left container" style="max-width:calc(var(--max)/2 + 40px); margin-left:auto; margin-right:0; padding-right:60px;">
+    <div class="section-tag"><div class="tag"><div class="tag-dot"></div> Mount Duneed & Surrounds</div></div>
+    <h1 class="hero-title">
+      Breathing<br>
+      New Life<br>
+      <span class="accent">Into Your<br>Lawn.</span>
+    </h1>
+    <p class="hero-sub">
+      Professional core aeration, scarification and lawn renovation services.
+      Owner-operated, commercial-grade equipment, real results.
+    </p>
+    <div class="hero-btns">
+      <a href="contact.html" class="btn-primary">Get a Free Quote →</a>
+      <a href="gallery.html" class="btn-ghost">See Our Work</a>
     </div>
-  </main>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <div class="trust-num">Local</div>
+        <div class="trust-label">Mount Duneed Based</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-num">100%</div>
+        <div class="trust-label">Owner Operated</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-num">Pro</div>
+        <div class="trust-label">Commercial Equipment</div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-num">Free</div>
+        <div class="trust-label">Quotes & Assessment</div>
+      </div>
+    </div>
+  </div>
 
-  <footer>AG Core Aeration &nbsp;·&nbsp; Website Launching Soon</footer>
+  <div class="hero-right">
+    <img src="images/IMG_6068.jpeg" alt="AG Core Aeration lawn renovation" class="hero-img">
+    <div class="hero-img-overlay"></div>
+  </div>
+</section>
 
-  <script>
-    // Generate random scattered background dots
-    const container = document.getElementById('bgDots');
-    const count = 60;
-    for (let i = 0; i < count; i++) {
-      const dot = document.createElement('span');
-      dot.style.left   = Math.random() * 100 + '%';
-      dot.style.top    = Math.random() * 100 + '%';
-      dot.style.animationDelay    = (Math.random() * 4) + 's';
-      dot.style.animationDuration = (3 + Math.random() * 3) + 's';
-      dot.style.width  = (3 + Math.random() * 4) + 'px';
-      dot.style.height = dot.style.width;
-      container.appendChild(dot);
-    }
-  </script>
+<!-- ══════════════ SERVICES ══════════════ -->
+<section class="services-strip">
+  <div class="container">
+    <div class="services-strip-header">
+      <div>
+        <div class="section-tag"><div class="tag">What We Do</div></div>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-sub" style="margin-bottom:0">Everything your lawn needs to recover, breathe and thrive — done right with commercial-grade equipment.</p>
+      </div>
+      <a href="contact.html" class="btn-ghost">Get a Quote →</a>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon">🌿</div>
+        <h3>Core Aeration</h3>
+        <p>Removes soil plugs to reduce compaction, improve drainage and get air, water and nutrients deep into the root zone.</p>
+        <span class="svc-price">Get a quote</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">⚙️</div>
+        <h3>Lawn Scarification</h3>
+        <p>Specialist blades cut through and remove thatch and moss buildup. Looks dramatic, but lawns recover fast and come back far healthier.</p>
+        <span class="svc-price">Get a quote</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🌱</div>
+        <h3>Overseeding</h3>
+        <p>Premium seed oversowing to fill gaps, repair bare patches, boost lawn thickness, and revive tired areas.</p>
+        <span class="svc-price">Get a quote</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🪣</div>
+        <h3>Top Dressing</h3>
+        <p>Turf sand worked into aeration holes to level surfaces, improve soil structure and give new seed the best environment to establish.</p>
+        <span class="svc-price">Get a quote</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📦</div>
+        <h3>Full Renovation Packages</h3>
+        <p>Scalp, scarify, aerate, top dress and overseed in one complete program. The full reset for lawns that need more than maintenance.</p>
+        <span class="svc-price">Get a quote</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📋</div>
+        <h3>Free Lawn Assessment</h3>
+        <p>Not sure what your lawn needs? We'll come take a look and give you an honest recommendation — no obligation, no pressure.</p>
+        <span class="svc-price">100% Free</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ WHY US ══════════════ -->
+<section class="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-img-wrap">
+        <!-- Wide landscape top — Bubble Mow — taller to show full image -->
+        <div class="why-img-item" style="grid-column:span 2; aspect-ratio:4/3; height:auto;">
+          <img src="images/Bubble_Mow2.jpg" alt="AG Core cylinder mower" style="object-position:center top;">
+        </div>
+        <!-- Two portrait images below -->
+        <div class="why-img-item" style="aspect-ratio:3/4;">
+          <img src="images/Mm_scalp_01.jpg" alt="MowMaster scalping">
+        </div>
+        <div class="why-img-item" style="aspect-ratio:3/4;">
+          <img src="images/Scarify_01.jpg" alt="Scarification in progress">
+        </div>
+      </div>
+
+      <div>
+        <div class="section-tag"><div class="tag">Why Choose Us</div></div>
+        <h2 class="section-title">Local. Honest.<br><span class="accent">Professional.</span></h2>
+        <div class="why-items">
+          <div class="why-item">
+            <div class="why-ic">🎯</div>
+            <div>
+              <h4>Owner on Every Job</h4>
+              <p>You're not dealing with a franchise or a crew you've never met. The owner turns up, does the work, and cares about the result.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-ic">🔬</div>
+            <div>
+              <h4>Commercial-Grade Equipment</h4>
+              <p>Not the lightweight hire shop stuff. Our machines deliver deeper treatment and faster recovery than anything a DIYer can rent.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-ic">💬</div>
+            <div>
+              <h4>Honest Advice, Always</h4>
+              <p>If your lawn doesn't need a treatment, we'll say so. We'd rather earn your trust than oversell a service you don't need.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-ic">✅</div>
+            <div>
+              <h4>Satisfaction Guaranteed</h4>
+              <p>We're not happy until you are. Every job comes with a satisfaction guarantee — if something's not right, we come back and fix it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ GALLERY STRIP ══════════════ -->
+<section class="gallery-strip">
+  <div class="container">
+    <div class="gallery-strip-header">
+      <div>
+        <div class="section-tag"><div class="tag">Our Work</div></div>
+        <h2 class="section-title">The Results<br><span class="accent">Speak for Themselves.</span></h2>
+      </div>
+      <a href="gallery.html" class="btn-ghost">View Full Gallery →</a>
+    </div>
+    <div class="photo-grid">
+      <div class="photo-item">
+        <img src="images/G_11-09_Regrowth.jpeg" alt="Lawn regrowth after aeration">
+      </div>
+      <div class="photo-item">
+        <img src="images/Core_02.jpg" alt="Core aeration in progress">
+      </div>
+      <div class="photo-item">
+        <img src="images/RyeOS_03_4weeks.JPG" alt="Rye grass 4 weeks after oversow">
+      </div>
+      <div class="photo-item">
+        <img src="images/Scarify_02.jpg" alt="After scarification">
+      </div>
+      <div class="photo-item">
+        <img src="images/G_02-27_recov.jpg" alt="Lawn recovery">
+      </div>
+      <div class="photo-item">
+        <img src="images/Topdress_02.jpg" alt="Top dressing">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRICING ══════════════ -->
+<section class="pricing">
+  <div class="container">
+    <div class="section-tag"><div class="tag">Transparent Pricing</div></div>
+    <h2 class="section-title">Simple, Honest<br><span class="accent">Pricing.</span></h2>
+    <p class="section-sub">Pricing varies for every lawn and yard. We'll quote each service and detail it clearly in your quote — no hidden fees, no surprises.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Core Aeration</div>
+        <div class="price-desc">Mechanical core aeration, with multiple passes where needed. Most impactful treatment for compacted lawns.</div>
+        <div class="price-from">Starting from</div>
+        <div class="price-num">POA</div>
+        <div class="price-note">Price varies by lawn size</div>
+        <ul class="price-includes">
+          <li>Full lawn core aeration</li>
+          <li>Commercial-grade machine</li>
+          <li>Pre &amp; post inspection</li>
+          <li>Aftercare advice</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-featured-badge">Most Popular</div>
+        <div class="price-name">Mini Reno</div>
+        <div class="price-desc">Core aeration followed by light top dress of turf sand to fill core holes and address any level issues.</div>
+        <div class="price-from">Starting from</div>
+        <div class="price-num">POA</div>
+        <div class="price-note">Free quote — usually same day</div>
+        <ul class="price-includes">
+          <li>Heavy scalp</li>
+          <li>Full core aeration</li>
+          <li>Fertilise</li>
+          <li>Top dress</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Full Renovation</div>
+        <div class="price-desc">Complete lawn reset — scalp, scarify, aerate, top dress and fertilise in one program.</div>
+        <div class="price-from">Starting from</div>
+        <div class="price-num">POA</div>
+        <div class="price-note">Free on-site assessment included</div>
+        <ul class="price-includes">
+          <li>Scalp &amp; scarification</li>
+          <li>Core aeration</li>
+          <li>Top dressing</li>
+          <li>Fertilise &amp; aftercare plan</li>
+        </ul>
+      </div>
+    </div>
+    <p class="pricing-note">Not sure which service your lawn needs? <a href="contact.html">Book a free assessment</a> and we'll tell you honestly.</p>
+  </div>
+</section>
+
+<!-- ══════════════ SERVICE AREA ══════════════ -->
+<section class="service-area">
+  <div class="container">
+    <div class="section-tag"><div class="tag">Service Area</div></div>
+    <h2 class="section-title">Based in Mount Duneed.<br><span class="accent">Servicing the Region.</span></h2>
+    <div class="area-grid">
+      <div class="area-map">
+        <div class="area-pin">📍</div>
+        <h3>Mount Duneed & Surrounds</h3>
+        <p>Geelong region and surrounding suburbs.<br>Not sure if we cover your area? Just ask — we'll confirm same day.</p>
+      </div>
+      <div>
+        <p style="font-size:0.85rem;color:var(--dim);margin-bottom:20px;line-height:1.7">We're locally based and operate across the greater Geelong region. Here are some of the areas we regularly service:</p>
+        <div class="area-suburbs">
+          <span class="suburb-chip main">Mount Duneed</span>
+          <span class="suburb-chip">Armstrong Creek</span>
+          <span class="suburb-chip">Waurn Ponds</span>
+          <span class="suburb-chip">Grovedale</span>
+          <span class="suburb-chip">Highton</span>
+          <span class="suburb-chip">Belmont</span>
+          <span class="suburb-chip">Geelong</span>
+          <span class="suburb-chip">Torquay</span>
+          <span class="suburb-chip">Jan Juc</span>
+          <span class="suburb-chip">Fyansford</span>
+          <span class="suburb-chip">Newtown</span>
+          <span class="suburb-chip">+ Surrounding Areas</span>
+        </div>
+        <div class="area-cta">
+          <p>Don't see your suburb? Drop us a message — we cover a wider area than listed and are happy to travel for the right job.</p>
+          <a href="contact.html" class="btn-primary">Check Your Area →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ QUOTE / CONTACT ══════════════ -->
+<section class="quote-section">
+  <div class="container">
+    <div class="quote-inner">
+      <div class="quote-info">
+        <div class="section-tag"><div class="tag">Get in Touch</div></div>
+        <h2 class="section-title">Get a Quote.<br><span class="accent">We Reply Fast.</span></h2>
+        <p class="section-sub">Fill in the form and our AI assistant responds instantly — we follow up personally within the hour.</p>
+        <div class="contact-cards">
+          <a href="tel:0402376939" class="contact-card">
+            <div class="cc-icon">📞</div>
+            <div>
+              <div class="cc-label">Call Us</div>
+              <div class="cc-val">0402 376 939</div>
+            </div>
+          </a>
+          <a href="mailto:agcoreaeration@gmail.com" class="contact-card">
+            <div class="cc-icon">✉️</div>
+            <div>
+              <div class="cc-label">Email Us</div>
+              <div class="cc-val">agcoreaeration@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61562326494902" target="_blank" class="contact-card">
+            <div class="cc-icon">💬</div>
+            <div>
+              <div class="cc-label">Facebook</div>
+              <div class="cc-val">Message us on Facebook</div>
+            </div>
+          </a>
+        </div>
+        <div class="reply-promise">
+          <span>⚡</span>
+          <span><strong>We strive for same day response</strong> — if we're on the tools, we'll get back to you ASAP.</span>
+        </div>
+      </div>
+      <div>
+        <div class="demo-wrap">
+          <div class="demo-bar">
+            <div class="wd" style="background:#ff5f57"></div>
+            <div class="wd" style="background:#febc2e"></div>
+            <div class="wd" style="background:#28c840"></div>
+            <span>AG Core Aeration — Quote Form</span>
+          </div>
+          <iframe class="demo-frame" src="lead-bot.html" title="Quote form"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="_shared.js"></script>
+<script>
+  injectFooter();
+</script>
 </body>
 </html>

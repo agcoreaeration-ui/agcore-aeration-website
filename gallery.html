@@ -1,0 +1,420 @@
+<!-- GALLERY PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EL76J15J00"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EL76J15J00');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — AG Core Aeration</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="_shared.js"></script>
+<style>
+/* Critical variables — mirrors _shared.js */
+:root {
+  --bg: #0D0D0D; --bg2: #131313; --card: #1C1C1C;
+  --border: #272727;
+  --white: #FFFFFF; --dim: rgba(255,255,255,0.48); --dimmer: rgba(255,255,255,0.22);
+  --accent: #1E7B34; --accent2: #196A2C; --accent-light: #1E7B34;
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --radius: 12px; --max: 1100px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+.container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+.accent { color: var(--accent-light); }
+.section-title { font-family: var(--font-head); font-size: clamp(2rem,4vw,3.2rem); font-weight: 900; text-transform: uppercase; line-height: 1.0; letter-spacing: 0.01em; margin-bottom: 14px; }
+.section-sub { font-size: 0.95rem; color: var(--dim); max-width: 520px; line-height: 1.75; margin-bottom: 44px; }
+.section-tag { margin-bottom: 18px; }
+.tag { display: inline-flex; align-items: center; gap: 7px; background: rgba(30,123,52,0.1); border: 1px solid rgba(30,123,52,0.25); color: var(--accent-light); font-family: var(--font-head); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; }
+.tag-dot { width: 5px; height: 5px; background: var(--accent-light); border-radius: 50%; }
+.btn-primary { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 14px 28px; font-family: var(--font-head); font-size: 1rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block; }
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+.btn-ghost { background: none; color: var(--dim); border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 24px; font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, color 0.2s; text-decoration: none; display: inline-block; }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-light); }
+@media (max-width: 900px) { .container { padding: 0 20px; } }
+
+/* ── PAGE HERO ── */
+.page-hero {
+  padding: 144px 0 60px;
+  background: linear-gradient(160deg, #0A0A0A 0%, #0D1A08 100%);
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 80% at 70% 50%, rgba(30,123,52,0.06) 0%, transparent 60%);
+}
+.page-hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.8rem,5vw,4.5rem);
+  font-weight: 900; text-transform: uppercase;
+  line-height: 0.95; margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+.page-hero p {
+  font-size: 1rem; color: var(--dim);
+  max-width: 520px; line-height: 1.7;
+  position: relative; z-index: 1;
+}
+
+/* ── ACTION SHOTS ── */
+.action-section { padding: 80px 0; }
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+  align-items: stretch;
+}
+.action-item {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.action-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.4s;
+}
+.action-item:hover img { transform: scale(1.04); }
+
+/* Row 1: 3 equal portrait cards */
+.action-item:nth-child(1) { grid-column: span 4; aspect-ratio: 3/4; }
+.action-item:nth-child(2) { grid-column: span 4; aspect-ratio: 3/4; }
+.action-item:nth-child(3) { grid-column: span 4; aspect-ratio: 3/4; }
+
+/* Row 2: wide + portrait — stretch to match each other */
+.action-item:nth-child(4) { grid-column: span 8; }
+.action-item:nth-child(5) { grid-column: span 4; }
+.action-item:nth-child(4) img,
+.action-item:nth-child(5) img { aspect-ratio: unset; height: 100%; min-height: 300px; }
+
+/* Row 3: portrait + wide — stretch to match each other */
+.action-item:nth-child(6) { grid-column: span 4; }
+.action-item:nth-child(7) { grid-column: span 8; }
+.action-item:nth-child(6) img,
+.action-item:nth-child(7) img { aspect-ratio: unset; height: 100%; min-height: 300px; }
+
+/* Row 4: 3 equal portrait cards */
+.action-item:nth-child(8)  { grid-column: span 4; aspect-ratio: 3/4; }
+.action-item:nth-child(9)  { grid-column: span 4; aspect-ratio: 3/4; }
+.action-item:nth-child(10) { grid-column: span 4; aspect-ratio: 3/4; }
+
+/* ── BEFORE & AFTER ── */
+.ba-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+}
+.ba-pairs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+.ba-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ba-item {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.ba-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  aspect-ratio: 4/3;
+  transition: transform 0.4s;
+}
+.ba-item:hover img { transform: scale(1.03); }
+.ba-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 100px;
+}
+.before-badge { background: rgba(180,50,40,0.85); color: white; }
+.after-badge  { background: rgba(30,123,52,0.85); color: white; }
+.ba-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 16px 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+}
+.ba-caption h4 {
+  font-family: var(--font-head); font-size: 0.88rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: #fff; margin-bottom: 2px;
+}
+.ba-caption p { font-size: 0.74rem; color: rgba(255,255,255,0.6); }
+
+/* ── CTA ── */
+.cta-band {
+  padding: 80px 0; text-align: center;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(135deg, #13100A 0%, #0A0A0A 100%);
+  position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(30,123,52,0.05) 0%, transparent 70%);
+}
+.cta-band h2 {
+  font-family: var(--font-head); font-size: clamp(2rem,4vw,3rem);
+  font-weight: 900; text-transform: uppercase; line-height: 1.0;
+  margin-bottom: 12px; position: relative; z-index: 1;
+}
+.cta-band p {
+  font-size: 0.92rem; color: var(--dim); max-width: 420px;
+  margin: 0 auto 28px; line-height: 1.7; position: relative; z-index: 1;
+}
+.cta-band .btn-primary { position: relative; z-index: 1; }
+
+/* ── MOBILE ── */
+@media (max-width: 860px) {
+  .action-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .action-item { grid-column: span 1 !important; aspect-ratio: 3/4 !important; }
+  .ba-pair { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 500px) {
+  .action-grid { grid-template-columns: 1fr; }
+  .ba-pair { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>
+.inline-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,10,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.08); }
+.inline-nav-inner { max-width:1100px; margin:0 auto; padding:0 40px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+.inline-nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.inline-nav-links { display:flex; align-items:center; gap:32px; }
+.inline-nav-links a { color:rgba(255,255,255,0.6); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+.inline-nav-links a.active { color:#2a9d47; }
+.inline-nav-links a:hover { color:#fff; }
+.inline-nav-cta { background:#1E7B34; color:#fff !important; padding:9px 20px; border-radius:7px; text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:0.82rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
+.inline-nav-cta:hover { background:#196A2C !important; }
+.inline-hamburger { display:none; background:none; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-size:18px; width:38px; height:38px; cursor:pointer; align-items:center; justify-content:center; }
+.inline-mobile-menu { display:none; flex-direction:column; gap:2px; padding:10px 20px 18px; border-top:1px solid rgba(255,255,255,0.08); background:rgba(10,10,10,0.99); }
+.inline-mobile-menu.open { display:flex; }
+.inline-mobile-menu a { color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:12px 14px; border-radius:8px; display:block; }
+.inline-mobile-menu a.active { color:#2a9d47; }
+.inline-mobile-menu a:hover { background:rgba(255,255,255,0.05); color:#fff; }
+.inline-mobile-cta { margin-top:8px; background:#1E7B34; color:#fff !important; border-radius:10px; padding:13px 20px; text-align:center; }
+@media (max-width:900px) {
+  .inline-nav-inner { padding:0 20px; }
+  .inline-nav-links { display:none; }
+  .inline-hamburger { display:flex; }
+}
+</style>
+<nav class="inline-nav">
+  <div class="inline-nav-inner">
+    <a href="index.html" class="inline-nav-logo">
+      <img src="images/AG_Core_Logo_Dots.PNG" alt="AG Core Logo" style="width:28px;height:28px;">
+      <img src="images/AG_Core_Logo_Tr-Text.PNG" alt="AG Core Aeration" style="height:32px;width:auto;display:block;">
+    </a>
+    <div class="inline-nav-links">
+      <a href="index.html">Home</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="inline-nav-cta">Get a Quote</a>
+    </div>
+    <button class="inline-hamburger" id="inlineHamburger" onclick="toggleInlineMenu()">☰</button>
+  </div>
+  <div class="inline-mobile-menu" id="inlineMobileMenu">
+    <a href="index.html">Home</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="inline-mobile-cta">Get a Free Quote →</a>
+  </div>
+</nav>
+<div id="site-nav" style="display:none;"></div>
+<script>
+function toggleInlineMenu() {
+  const menu = document.getElementById('inlineMobileMenu');
+  const btn = document.getElementById('inlineHamburger');
+  menu.classList.toggle('open');
+  btn.textContent = menu.classList.contains('open') ? '✕' : '☰';
+}
+</script>
+
+<!-- ── HERO ── -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-tag" style="margin-bottom:20px">
+      <div class="tag"><div class="tag-dot"></div> Our Work</div>
+    </div>
+    <h1>On the Tools.<br><span class="accent">On the Lawn.</span></h1>
+    <p>A look at what we do and the results we deliver — real lawns, real transformations, owner on every job.</p>
+  </div>
+</section>
+
+<!-- ── BEFORE & AFTER ── -->
+<section class="ba-section">
+  <div class="container">
+    <div class="section-tag"><div class="tag">Transformations</div></div>
+    <h2 class="section-title">Before &amp; After.</h2>
+    <p class="section-sub">Real results from real lawns. Every pair is the same property — nothing staged.</p>
+
+    <div class="ba-pairs">
+
+      <!-- Pair 1: Scarification -->
+      <div class="ba-pair">
+        <div class="ba-item">
+          <img src="images/RS-Before2.JPG" alt="Before scarification">
+          <div class="ba-badge before-badge">Before</div>
+          <div class="ba-caption">
+            <h4>Nature Strip · Autumn Mini Reno</h4>
+            <p>Heavy thatch buildup, bare areas, compacted surface</p>
+          </div>
+        </div>
+        <div class="ba-item">
+          <img src="images/RS-Post5w.JPG" alt="After scarification">
+          <div class="ba-badge after-badge">After</div>
+          <div class="ba-caption">
+            <h4>Same Lawn · 5 Weeks Post-Late Season Reno</h4>
+            <p>Full recovery, Thick green coverage</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pair 2: Full Renovation -->
+      <div class="ba-pair">
+        <div class="ba-item">
+          <img src="images/G_10-12_Scalp.jpeg" alt="Before renovation">
+          <div class="ba-badge before-badge">Before</div>
+          <div class="ba-caption">
+            <h4>Scalped &amp; Scarified · Remove Thatch build up</h4>
+            <p>Next up core and Top dress</p>
+          </div>
+        </div>
+        <div class="ba-item">
+          <img src="images/G_11-09_Regrowth.jpeg" alt="After renovation">
+          <div class="ba-badge after-badge">After</div>
+          <div class="ba-caption">
+            <h4>Same Lawn · 5 Weeks After</h4>
+            <p>Noticeably denser, lush green coverage almost 100%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pair 3: Rye Oversow — Before + During -->
+      <div class="ba-pair">
+        <div class="ba-item">
+          <img src="images/RyeOS_01_before.JPG" alt="Before rye oversow">
+          <div class="ba-badge before-badge">Before</div>
+          <div class="ba-caption">
+            <h4>Santa Ana Couch · Before Rye grass Oversow</h4>
+            <p>Preparing for Lush green rye lawn through Winter</p>
+          </div>
+        </div>
+        <div class="ba-item">
+          <img src="images/RyeOS_02_during.JPG" alt="Seed and sand applied">
+          <div class="ba-badge" style="background:rgba(180,120,20,0.85);color:white;">During</div>
+          <div class="ba-caption">
+            <h4>Seed &amp; Sand Applied</h4>
+            <p>Rye seed broadcast and rolled into topdressing sand</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pair 4: Rye Oversow — 4 Weeks + Final -->
+      <div class="ba-pair">
+        <div class="ba-item">
+          <img src="images/RyeOS_03_4weeks.JPG" alt="After rye oversow">
+          <div class="ba-badge after-badge">4 Weeks After</div>
+          <div class="ba-caption">
+            <h4>Same Lawn · 4 Weeks Post Oversow</h4>
+            <p>Rye grass fully established, deep green through winter</p>
+          </div>
+        </div>
+        <div class="ba-item">
+          <img src="images/IMG_6068.jpg" alt="Final lawn result">
+          <div class="ba-badge after-badge">Final Result</div>
+          <div class="ba-caption">
+            <h4>Final Result · Full Lawn View</h4>
+            <p>Deep green rye coverage — the complete winter oversow result</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Want results<br><span class="accent">like these?</span></h2>
+    <p>Book a free lawn assessment and find out exactly what your lawn needs to reach its potential.</p>
+    <a href="contact.html" class="btn-primary">Book a Free Assessment →</a>
+  </div>
+</section>
+
+<!-- ── ACTION SHOTS ── -->
+<section class="action-section">
+  <div class="container">
+    <div class="section-tag"><div class="tag">In Action</div></div>
+    <h2 class="section-title">On the Tools.</h2>
+    <div class="action-grid">
+
+      <!-- Row 1: 3 portraits -->
+      <div class="action-item">
+        <img src="images/Core_03.jpg" alt="Aerator overhead view">
+      </div>
+      <div class="action-item">
+        <img src="images/Scarify_01.jpg" alt="Scarification in progress">
+      </div>
+      <div class="action-item">
+        <img src="images/Topdress_02.jpg" alt="Top dressing application">
+      </div>
+
+      <!-- Row 2: wide + portrait -->
+      <div class="action-item">
+        <img src="images/Bubble_Mow2.jpg" alt="Cylinder mower in action">
+      </div>
+      <div class="action-item">
+        <img src="images/Core_04.jpg" alt="Core aeration close up">
+      </div>
+
+      <!-- Row 3: portrait + wide -->
+      <div class="action-item">
+        <img src="images/Scarify_02.jpg" alt="Scarifier at work">
+      </div>
+      <div class="action-item">
+        <img src="images/Mm_scalp_01.jpg" alt="MowMaster scalping">
+      </div>
+
+      <!-- Row 4: 3 portraits -->
+      <div class="action-item">
+        <img src="images/AG_Scalp.jpg" alt="Rotary mower scalping">
+      </div>
+      <div class="action-item">
+        <img src="images/Groomer_01.jpg" alt="Lawn groomer at work">
+      </div>
+      <div class="action-item">
+        <img src="images/Core_02.jpg" alt="Aeration in progress">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script>
+injectNav('Gallery'); injectFooter();
+</script>
+</body>
+</html>

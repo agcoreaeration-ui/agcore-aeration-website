@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG Core Aeration — FAQ Bot</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0A0A0A; --bg2: #111; --card: #161616; --border: #2A2A2A;
+  --accent: #1E7B34; --accent2: #1E7B34; --green: #2ECC71;
+  --white: #fff; --dim: rgba(255,255,255,0.5); --dimmer: rgba(255,255,255,0.25);
+  --font-head: 'Barlow Condensed', sans-serif; --font-body: 'Barlow', sans-serif;
+  --radius: 14px;
+}
+body { font-family: var(--font-body); background: var(--bg2); min-height: 100vh; color: var(--white); }
+
+/* PLACEHOLDER PAGE */
+.placeholder {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 40px;
+}
+.placeholder h2 { font-family: var(--font-head); font-size: 1.6rem; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+.placeholder p { color: var(--dim); font-size: 0.9rem; }
+.placeholder .arrow { font-size: 2rem; color: var(--accent); margin-bottom: 16px; animation: bounce 1.5s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+/* CHAT BUBBLE */
+.chat-bubble {
+  position: fixed; bottom: 28px; right: 28px;
+  width: 60px; height: 60px;
+  background: var(--accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 1000;
+  box-shadow: 0 8px 32px rgba(30,123,52,0.4), 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+}
+.chat-bubble:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(30,123,52,0.5); }
+.chat-bubble-icon { font-size: 26px; transition: transform 0.3s; color: #fff; }
+.chat-bubble.open .chat-bubble-icon { transform: rotate(90deg); }
+.notif-dot {
+  position: absolute; top: 2px; right: 2px;
+  width: 16px; height: 16px; background: var(--green);
+  border-radius: 50%; border: 2px solid var(--bg);
+  display: none; animation: np 2.5s infinite;
+}
+@keyframes np { 0%{box-shadow:0 0 0 0 rgba(46,204,113,0.6)} 70%{box-shadow:0 0 0 8px rgba(46,204,113,0)} 100%{box-shadow:0 0 0 0 rgba(46,204,113,0)} }
+
+/* CHAT WINDOW */
+.chat-window {
+  position: fixed; bottom: 104px; right: 28px;
+  width: 380px; max-height: 580px;
+  background: var(--card); border-radius: 20px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.2);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column; z-index: 999; overflow: hidden;
+  transform-origin: bottom right;
+  transform: scale(0.85) translateY(16px); opacity: 0; pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
+}
+.chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+
+/* Header */
+.chat-header {
+  background: linear-gradient(135deg, #0D1A08 0%, #0A1205 100%);
+  padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0; border-bottom: 1px solid var(--border);
+}
+.chat-header-avatar {
+  width: 40px; height: 40px; background: var(--accent);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0; position: relative;
+}
+.online-dot { position: absolute; bottom: 1px; right: 1px; width: 10px; height: 10px; background: var(--green); border-radius: 50%; border: 2px solid #0D1A08; }
+.chat-header-info { flex: 1; }
+.chat-header-name { font-family: var(--font-head); font-weight: 800; font-size: 1rem; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2; }
+.chat-header-status { font-size: 0.72rem; color: var(--dim); display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+.status-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+.chat-close { width: 30px; height: 30px; background: rgba(255,255,255,0.08); border: none; border-radius: 8px; color: var(--dim); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.chat-close:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+
+/* Messages */
+.chat-messages { flex: 1; overflow-y: auto; padding: 18px 14px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
+.chat-messages::-webkit-scrollbar { width: 3px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.msg { display: flex; gap: 8px; align-items: flex-end; animation: msgIn 0.3s ease forwards; }
+@keyframes msgIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.msg.user { flex-direction: row-reverse; }
+.msg-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+.msg-avatar.bot { background: rgba(30,123,52,0.15); }
+.msg-avatar.usr { background: rgba(255,255,255,0.08); }
+.msg-bubble {
+  max-width: 80%; padding: 10px 14px; border-radius: 16px;
+  border-bottom-left-radius: 3px; font-size: 0.86rem; line-height: 1.6;
+  color: rgba(255,255,255,0.85); background: var(--bg2);
+}
+.msg.user .msg-bubble { background: var(--accent); color: #fff; border-bottom-left-radius: 16px; border-bottom-right-radius: 3px; }
+.msg-time { font-size: 0.62rem; color: var(--dimmer); margin-top: 3px; padding: 0 3px; }
+.msg.user .msg-time { text-align: right; }
+
+/* Typing */
+.typing-bubble { background: var(--bg2); border-radius: 16px; border-bottom-left-radius: 3px; padding: 12px 14px; display: flex; gap: 4px; align-items: center; }
+.typing-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 50%; animation: tb 1.2s infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes tb { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-4px);background:rgba(30,123,52,0.6)} }
+
+/* Suggestions */
+.suggestions { padding: 0 14px 10px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
+.suggestion-chip {
+  background: none; border: 1.5px solid var(--border); border-radius: 100px;
+  padding: 5px 12px; font-family: var(--font-body); font-size: 0.74rem;
+  font-weight: 500; color: var(--dim); cursor: pointer; white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.suggestion-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(30,123,52,0.06); }
+
+/* Input */
+.chat-input-row { border-top: 1px solid var(--border); padding: 10px 12px; display: flex; gap: 8px; align-items: center; flex-shrink: 0; background: var(--card); }
+.chat-input { flex: 1; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 100px; padding: 9px 16px; font-family: var(--font-body); font-size: 0.86rem; color: var(--white); outline: none; transition: border-color 0.2s; }
+.chat-input:focus { border-color: var(--accent); }
+.chat-input::placeholder { color: rgba(255,255,255,0.2); }
+.chat-send { width: 36px; height: 36px; background: var(--accent); border: none; border-radius: 50%; color: #fff; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, transform 0.15s; }
+.chat-send:hover { background: var(--accent2); transform: scale(1.05); }
+.chat-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.chat-footer { text-align: center; font-size: 0.62rem; color: rgba(255,255,255,0.15); padding: 5px 0 8px; flex-shrink: 0; font-family: var(--font-head); letter-spacing: 0.06em; text-transform: uppercase; }
+
+@media (max-width: 500px) {
+  .chat-window { width: calc(100vw - 20px); right: 10px; bottom: 90px; max-height: 72vh; }
+}
+</style>
+</head>
+<body>
+
+<div class="placeholder">
+  <div>
+    <div class="arrow">↘</div>
+    <h2>AG Core Aeration</h2>
+    <p>AI assistant is live in the bottom right corner.<br>Click the chat bubble to ask a question.</p>
+  </div>
+</div>
+
+<!-- BUBBLE -->
+<div class="chat-bubble" id="chatBubble" onclick="toggleChat()">
+  <span class="chat-bubble-icon">💬</span>
+  <div class="notif-dot" id="notifDot"></div>
+</div>
+
+<!-- WINDOW -->
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-header-avatar">🌿<div class="online-dot"></div></div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">AG Core Aeration</div>
+      <div class="chat-header-status"><div class="status-dot"></div>AI Assistant · Always available</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="suggestions" id="suggestions"></div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Ask about our services..." onkeydown="if(event.key==='Enter')sendMessage()" />
+    <button class="chat-send" id="sendBtn" onclick="sendMessage()">➤</button>
+  </div>
+  <div class="chat-footer">AG Core Aeration · Powered by AI</div>
+</div>
+
+<script>
+const BOT_CONFIG = {
+  businessName: "AG Core Aeration",
+  trade: "lawn aeration & renovation services",
+  area: "the local area",
+  phone: "0402376939",
+  email: "agcoreaeration@gmail.com",
+  hours: "Hours are flexible and by appointment only",
+  emergency: "same-day visits available for urgent lawn issues",
+  certifications: "fully insured, hands-on experience, every lawn treated",
+  responseTime: "within 24 hours",
+  faqs: [
+    { keywords: ["price","cost","charge","how much","quote","pricing","fee","expensive"], answer: "We offer **free, no-obligation quotes** for all services. Prices vary by lawn size and treatment — get in touch and we'll give you an exact quote, usually within 24 hours. 👍" },
+    { keywords: ["aeration","aerating","core aeration","holes","spikes","plug"], answer: "**Core aeration** removes small plugs of soil from your lawn, relieving compaction and allowing air, water and nutrients to reach the roots. It's the single most beneficial treatment for most lawns — best done in autumn or spring. 🌿" },
+    { keywords: ["scarification","scarify","scarifying","thatch","moss","dethatch"], answer: "**Scarification** removes dead thatch and moss from the lawn surface using specialist blades. It can look dramatic at first, but lawns typically recover within 4–6 weeks and come back much healthier. 🔄" },
+    { keywords: ["overseed","overseeding","seed","bare","patchy","thin","bald"], answer: "We can **overseed** after scarification or aeration to fill thin or bare patches. We use high-quality grass seed matched to your lawn type. Germination typically takes 2–3 weeks depending on conditions. 🌱" },
+    { keywords: ["area","cover","location","travel","near","local","postcode"], answer: "We cover the local area and surrounding towns. Drop us your postcode via the contact form and we'll confirm we cover you — most enquiries get a same-day response. 📍" },
+    { keywords: ["hours","open","available","when","time","weekend","saturday","sunday"], answer: "Hours are flexible and by appointment only. Contact us today to find a time that works for you. ⏰" },
+    { keywords: ["insured","insurance","certified","qualified","experience","guarantee"], answer: "We're **fully insured** and have with professional-grade' experience** treating lawns across the local area. All our work comes with a satisfaction guarantee — if you're not happy, we'll put it right. ✅" },
+    { keywords: ["book","appointment","schedule","visit","arrange","slot","when"], answer: "You can book via our **quote form** on this page, by calling **0402 376 939**, or emailing **agcoreaeration@gmail.com**. Spring is our busy period and does book up quick, book early to lock in your spot. 📅" },
+    { keywords: ["when","best time","season","spring","autumn","summer","winter"], answer: "The **best times for aeration and scarification** are **autumn (March–May)** and **spring (September–November)** when grass is actively growing and can recover quickly. We're available year-round for assessments and treatments. 🗓️" },
+    { keywords: ["payment","pay","cash","card","invoice","deposit"], answer: "We accept **bank transfer and cash**. We'll provide a clear quote before any work starts — no hidden costs or surprises. 💳" },
+  ]
+};
+
+const SUGGESTED = ["What is core aeration?", "How much does it cost?", "When's the best time?", "What areas do you cover?", "How do I book?"];
+
+let isOpen = false, isTyping = false, greeted = false;
+let conversationHistory = [];
+
+function toggleChat() {
+  isOpen = !isOpen;
+  document.getElementById('chatBubble').classList.toggle('open', isOpen);
+  document.getElementById('chatWindow').classList.toggle('open', isOpen);
+  document.getElementById('notifDot').style.display = 'none';
+  if (isOpen && !greeted) {
+    greeted = true;
+    setTimeout(() => {
+      addBotMessage("👋 Hi! I'm the **AG Core Aeration** assistant.\n\nI can answer questions about our services, pricing, timing, and more. What would you like to know?");
+      renderSuggestions();
+    }, 400);
+  }
+  if (isOpen) setTimeout(() => document.getElementById('chatInput').focus(), 350);
+}
+
+function renderSuggestions() {
+  const el = document.getElementById('suggestions');
+  el.innerHTML = '';
+  SUGGESTED.forEach(q => {
+    const btn = document.createElement('button');
+    btn.className = 'suggestion-chip'; btn.textContent = q;
+    btn.onclick = () => { el.innerHTML = ''; sendUserMessage(q); };
+    el.appendChild(btn);
+  });
+}
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text || isTyping) return;
+  input.value = '';
+  document.getElementById('suggestions').innerHTML = '';
+  sendUserMessage(text);
+}
+
+function sendUserMessage(text) {
+  addUserMessage(text);
+  conversationHistory.push({ role: 'user', content: text });
+  showTyping();
+  const lower = text.toLowerCase();
+  const preset = BOT_CONFIG.faqs.find(f => f.keywords.some(k => lower.includes(k)));
+  if (preset) {
+    setTimeout(() => { hideTyping(); addBotMessage(preset.answer); conversationHistory.push({ role: 'assistant', content: preset.answer }); }, 700 + Math.random() * 500);
+  } else { callAI(text); }
+}
+
+async function callAI(userMessage) {
+  const sys = `You are a friendly, knowledgeable assistant for AG Core Aeration, a professional lawn aeration and care business.
+
+Business info:
+- Services: Core Aeration, Lawn Scarification, Overseeding, Lawn Treatment, Top Dressing, Free Assessments
+- Area: ${BOT_CONFIG.area}
+- Phone: ${BOT_CONFIG.phone}
+- Email: ${BOT_CONFIG.email}
+- Hours: ${BOT_CONFIG.hours}
+- Experience: 10 years, every lawn, fully insured
+
+Rules:
+- Keep replies SHORT (2-4 sentences) — this is a chat widget
+- Use **bold** for key info, use relevant emojis naturally
+- Sound like a genuine lawn care expert — warm and knowledgeable
+- If they want a quote, direct them to the quote form or call ${BOT_CONFIG.phone}
+- Never invent prices or specific dates`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 300, system: sys, messages: conversationHistory })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || `Sorry, I had a blip! Call us directly on **${BOT_CONFIG.phone}** for the fastest help.`;
+    hideTyping(); addBotMessage(reply);
+    conversationHistory.push({ role: 'assistant', content: reply });
+  } catch(e) {
+    hideTyping();
+    const fb = `Sorry, I'm having a moment 😅 Give us a call on **${BOT_CONFIG.phone}** or email **${BOT_CONFIG.email}** and we'll help straight away.`;
+    addBotMessage(fb); conversationHistory.push({ role: 'assistant', content: fb });
+  }
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('chatMessages');
+  const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const d = document.createElement('div'); d.className = 'msg user';
+  d.innerHTML = `<div><div class="msg-bubble">${esc(text)}</div><div class="msg-time">${now}</div></div>`;
+  msgs.appendChild(d); scroll();
+}
+
+function addBotMessage(text) {
+  const msgs = document.getElementById('chatMessages');
+  const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const d = document.createElement('div'); d.className = 'msg bot';
+  d.innerHTML = `<div class="msg-avatar bot">🌿</div><div><div class="msg-bubble">${fmt(text)}</div><div class="msg-time">${now}</div></div>`;
+  msgs.appendChild(d); scroll();
+}
+
+function showTyping() {
+  isTyping = true; document.getElementById('sendBtn').disabled = true;
+  const msgs = document.getElementById('chatMessages');
+  const d = document.createElement('div'); d.className = 'msg bot'; d.id = 'typingInd';
+  d.innerHTML = `<div class="msg-avatar bot">🌿</div><div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+  msgs.appendChild(d); scroll();
+}
+
+function hideTyping() {
+  isTyping = false; document.getElementById('sendBtn').disabled = false;
+  const el = document.getElementById('typingInd'); if (el) el.remove();
+}
+
+function scroll() { const m = document.getElementById('chatMessages'); m.scrollTop = m.scrollHeight; }
+function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function fmt(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+
+setTimeout(() => { if (!isOpen) document.getElementById('notifDot').style.display = 'block'; }, 2000);
+</script>
+</body>
+</html>

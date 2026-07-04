@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG Core Aeration — Get a Quote</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0A0A0A; --bg2: #111; --card: #161616; --border: #2A2A2A;
+  --accent: #1E7B34; --accent2: #196A2C; --green: #1E7B34;
+  --white: #fff; --dim: rgba(255,255,255,0.5); --dimmer: rgba(255,255,255,0.25);
+  --font-head: 'Barlow Condensed', sans-serif; --font-body: 'Barlow', sans-serif;
+  --radius: 12px;
+}
+body { font-family: var(--font-body); background: var(--bg); color: var(--white); min-height: 100vh; }
+
+.page { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+
+/* LEFT PANEL */
+.left {
+  background: linear-gradient(160deg, #0D1A08 0%, #0A1205 100%);
+  padding: 52px 44px; display: flex; flex-direction: column;
+  justify-content: space-between; position: relative; overflow: hidden;
+  border-right: 1px solid var(--border);
+}
+.left::before {
+  content: '🌿'; position: absolute; font-size: 300px; opacity: 0.04;
+  right: -60px; top: 50%; transform: translateY(-50%); pointer-events: none;
+}
+.logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; }
+
+.left h1 {
+  font-family: var(--font-head); font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 900; color: var(--white); line-height: 0.95;
+  text-transform: uppercase; margin-bottom: 20px; position: relative; z-index: 1;
+}
+.left h1 em { font-style: normal; color: var(--accent); display: block; }
+
+.divider { width: 36px; height: 3px; background: var(--accent); margin-bottom: 20px; position: relative; z-index: 1; }
+
+.left p.sub {
+  color: var(--dim); font-size: 0.9rem; line-height: 1.7;
+  max-width: 360px; margin-bottom: 40px; position: relative; z-index: 1;
+}
+
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 36px; position: relative; z-index: 1; }
+.stat { border-left: 3px solid var(--accent); padding: 10px 14px; }
+.stat-num { font-family: var(--font-head); font-size: 1.7rem; font-weight: 900; color: var(--accent); line-height: 1; }
+.stat-label { font-size: 0.72rem; color: var(--dimmer); margin-top: 4px; line-height: 1.4; }
+
+.trust-row { display: flex; flex-wrap: wrap; gap: 14px; position: relative; z-index: 1; }
+.trust-badge { font-size: 0.78rem; color: var(--dimmer); }
+.left-footer { font-size: 0.68rem; color: rgba(255,255,255,0.12); font-family: var(--font-head); letter-spacing: 0.08em; text-transform: uppercase; position: relative; z-index: 1; margin-top: 28px; }
+
+/* RIGHT PANEL */
+.right { background: var(--bg2); padding: 52px 44px; display: flex; flex-direction: column; justify-content: center; }
+.right-header { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.right-header h2 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 6px; }
+.right-header p { color: var(--dim); font-size: 0.87rem; }
+
+.form-grid { display: flex; flex-direction: column; gap: 15px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 0.68rem; font-weight: 700; color: var(--dimmer); letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-head); }
+.field input, .field select, .field textarea {
+  width: 100%; background: var(--card); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 12px 15px;
+  font-family: var(--font-body); font-size: 0.9rem; color: var(--white); outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(30,123,52,0.1);
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.2); }
+.field select option { background: #1A1A1A; }
+.field textarea { resize: vertical; min-height: 85px; }
+
+.urgency-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.urg-opt { position: relative; }
+.urg-opt input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.urg-opt label {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 6px; background: var(--card); border: 1.5px solid var(--border);
+  border-radius: var(--radius); cursor: pointer; transition: all 0.2s; text-align: center;
+}
+.urg-opt label .ui { font-size: 18px; }
+.urg-opt label .ut { font-size: 0.65rem; font-weight: 700; color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; font-family: var(--font-head); }
+.urg-opt input:checked + label { border-color: var(--accent); background: rgba(30,123,52,0.08); box-shadow: 0 0 0 3px rgba(30,123,52,0.1); }
+.urg-opt input:checked + label .ut { color: var(--accent); }
+
+.submit-btn {
+  width: 100%; background: var(--accent); color: #fff; border: none;
+  border-radius: var(--radius); padding: 15px;
+  font-family: var(--font-head); font-size: 1rem; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 4px;
+}
+.submit-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.spinner { width: 15px; height: 15px; border: 2px solid rgba(0,0,0,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.privacy { text-align: center; font-size: 0.72rem; color: var(--dimmer); margin-top: 10px; }
+
+/* SUCCESS */
+.success-panel { display: none; flex-direction: column; animation: fadeUp 0.4s ease forwards; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.success-icon { width: 56px; height: 56px; background: rgba(30,123,52,0.1); border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
+.success-panel h3 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 8px; letter-spacing: 0.04em; }
+.success-panel > p { color: var(--dim); font-size: 0.87rem; line-height: 1.6; margin-bottom: 22px; }
+
+.followup-box { background: var(--card); border: 1.5px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 20px; margin-bottom: 12px; }
+.box-label { font-family: var(--font-head); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; opacity: 0.8; }
+.followup-text { font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.8); white-space: pre-wrap; }
+.typing-cursor { display: inline-block; width: 2px; height: 13px; background: var(--accent); margin-left: 2px; vertical-align: middle; animation: blink 1s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.owner-box { background: #0D0D0D; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; }
+.owner-box .box-label { color: rgba(30,123,52,0.5); }
+.owner-summary { font-size: 0.85rem; line-height: 1.65; color: var(--dim); white-space: pre-wrap; }
+
+.reset-btn { background: none; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 10px 18px; font-family: var(--font-body); font-size: 0.82rem; color: var(--dim); cursor: pointer; transition: border-color 0.2s, color 0.2s; width: fit-content; }
+.reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 860px) {
+  .page { grid-template-columns: 1fr; }
+  .left { padding: 36px 24px; }
+  .right { padding: 36px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- LEFT -->
+  <div class="left">
+    <div>
+      <div class="logo-row">
+        <div class="nav-logo-icon" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;">
+          <img src="images/AG_Core_Logo_Dots.PNG" alt="AG Core Logo" style="width:28px;height:28px;">
+        </div>
+        <img src="images/AG_Core_Logo_Tr-Text.PNG" alt="AG Core Aeration" style="height:36px;width:auto;display:block;">
+      </div>
+      <h1>Get Your<br>Free<br><em>Quote Today.</em></h1>
+      <div class="divider"></div>
+      <p class="sub">Tell us about your lawn and we'll reply with a personalised quote — same day. No obligation, no hard sell.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">Free</div><div class="stat-label">No-obligation assessment</div></div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-badge">✅ Fully Insured</div>
+        <div class="trust-badge">🌿 Hands-On Experience</div>
+        <div class="trust-badge">📋 Free Quotes</div>
+      </div>
+    </div>
+    <div class="left-footer">AG Core Aeration · Professional Lawn Care</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="right-header">
+      <h2>Request a Free Quote</h2>
+      <p>Fill in your details and we'll be in touch shortly.</p>
+    </div>
+
+    <div class="form-grid" id="formPanel">
+      <div class="form-row">
+        <div class="field"><label>First Name</label><input type="text" id="firstName" placeholder="e.g. Sarah" /></div>
+        <div class="field"><label>Last Name</label><input type="text" id="lastName" placeholder="e.g. Mills" /></div>
+      </div>
+      <div class="field"><label>Email Address</label><input type="email" id="email" placeholder="your@email.com" /></div>
+      <div class="field"><label>Phone Number</label><input type="tel" id="phone" placeholder="07700 900000" /></div>
+      <div class="field">
+        <label>Service Required</label>
+        <select id="jobType">
+          <option value="">Select a service...</option>
+          <option>Core Aeration</option>
+          <option>Lawn Scarification</option>
+          <option>Overseeding</option>
+          <option>Top Dressing</option>
+          <option>Full Lawn Renovation</option>
+          <option>Free Lawn Assessment</option>
+          <option>Not sure — need advice</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Urgency</label>
+        <div class="urgency-row">
+          <div class="urg-opt"><input type="radio" name="urgency" id="u1" value="As soon as possible" /><label for="u1"><span class="ui">🚀</span><span class="ut">ASAP</span></label></div>
+          <div class="urg-opt"><input type="radio" name="urgency" id="u2" value="This week or next" /><label for="u2"><span class="ui">📅</span><span class="ut">This week</span></label></div>
+          <div class="urg-opt"><input type="radio" name="urgency" id="u3" value="Planning ahead, flexible on timing" checked /><label for="u3"><span class="ui">🗓️</span><span class="ut">Flexible</span></label></div>
+        </div>
+      </div>
+      <div class="field"><label>Tell Us About Your Lawn</label><textarea id="description" placeholder="Lawn size, current condition, any specific concerns..."></textarea></div>
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+        <span id="btnText">Send My Enquiry</span>
+        <div class="spinner" id="spinner"></div>
+        <span id="btnArrow">→</span>
+      </button>
+      <p class="privacy">🔒 Your details are kept private and never shared.</p>
+    </div>
+
+    <div class="success-panel" id="successPanel">
+      <div class="success-icon">🌿</div>
+      <h3>Enquiry Received!</h3>
+      <p>Our AI assistant has already drafted a reply. Here's what was sent to you, plus our team's summary.</p>
+      <div class="followup-box">
+        <div class="box-label">⚡ AI Reply Sent to Customer</div>
+        <div class="followup-text" id="followupText"></div>
+      </div>
+      <div class="owner-box">
+        <div class="box-label">📋 Lead Summary</div>
+        <div class="owner-summary" id="ownerSummary"></div>
+      </div>
+      <button class="reset-btn" onclick="resetForm()">← Submit another enquiry</button>
+    </div>
+  </div>
+</div>
+
+<script>
+async function handleSubmit() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName  = document.getElementById('lastName').value.trim();
+  const email     = document.getElementById('email').value.trim();
+  const phone     = document.getElementById('phone').value.trim();
+  const jobType   = document.getElementById('jobType').value;
+  const desc      = document.getElementById('description').value.trim();
+  const urgency   = document.querySelector('input[name="urgency"]:checked')?.value || 'Flexible';
+  if (!firstName || !email || !jobType) { alert('Please fill in at least your name, email, and service required.'); return; }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  document.getElementById('btnText').textContent = 'Sending...';
+  document.getElementById('spinner').style.display = 'block';
+  document.getElementById('btnArrow').style.display = 'none';
+
+  const prompt = `You are an AI assistant for AG Core Aeration, a professional lawn aeration and care business.
+
+A new enquiry has arrived. Write TWO things:
+
+1. A warm, professional follow-up message to send to the customer. It should:
+   - Address them by first name
+   - Reference their specific service and urgency
+   - Confirm we've received their enquiry
+   - For ASAP requests: say we'll follow up same day
+   - For others: say we'll be in touch same day
+   - Be friendly, knowledgeable about lawn care, reassuring — under 120 words
+   - Signed from "The AG Core Aeration Team"
+
+2. A brief internal lead summary for the business owner (3-4 lines): customer name & contact, service required, urgency, lawn details, recommended next action.
+
+Lead details:
+- Name: ${firstName} ${lastName}
+- Email: ${email}
+- Phone: ${phone || 'not provided'}
+- Service: ${jobType}
+- Urgency: ${urgency}
+- Lawn Details: ${desc || 'None provided'}
+
+Format EXACTLY:
+CUSTOMER_MESSAGE:
+[message]
+
+OWNER_SUMMARY:
+[summary]`;
+
+  try {
+    const res = await fetch('https://formspree.io/f/mdavvawd', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: `${firstName} ${lastName}`,
+        email: email,
+        phone: phone || 'Not provided',
+        service: jobType,
+        urgency: urgency,
+        message: desc || 'No additional details provided',
+        _subject: `New Quote Request — ${jobType} — ${firstName} ${lastName}`
+      })
+    });
+    if (res.ok) {
+      document.getElementById('formPanel').style.display = 'none';
+      document.getElementById('successPanel').style.display = 'flex';
+      const msg = `Hi ${firstName},\n\nThanks for reaching out to AG Core Aeration! We've received your enquiry for ${jobType} and will be in touch same day.\n\nIf it's urgent, feel free to call or text us directly.\n\nCheers,\nThe AG Core Aeration Team`;
+      await typeText('followupText', msg);
+      document.getElementById('ownerSummary').textContent = `Customer: ${firstName} ${lastName} | Email: ${email} | Phone: ${phone || 'not provided'}\nService: ${jobType} | Urgency: ${urgency}\nDetails: ${desc || 'None'}\nNext action: Follow up same day.`;
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch(e) {
+    alert('Something went wrong. Please try again.');
+    btn.disabled = false;
+    document.getElementById('btnText').textContent = 'Send My Enquiry';
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('btnArrow').style.display = 'inline';
+  }
+}
+
+async function typeText(id, text) {
+  const el = document.getElementById(id);
+  el.textContent = '';
+  const c = document.createElement('span'); c.className = 'typing-cursor'; el.appendChild(c);
+  for (let i = 0; i < text.length; i++) { el.insertBefore(document.createTextNode(text[i]), c); await new Promise(r => setTimeout(r, 13)); }
+  c.remove();
+}
+
+function resetForm() {
+  document.getElementById('formPanel').style.display = 'flex';
+  document.getElementById('successPanel').style.display = 'none';
+  ['firstName','lastName','email','phone','description'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('jobType').value = '';
+  document.querySelector('input[name="urgency"][value="Planning ahead, flexible on timing"]').checked = true;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false;
+  document.getElementById('btnText').textContent = 'Send My Enquiry';
+  document.getElementById('spinner').style.display = 'none';
+  document.getElementById('btnArrow').style.display = 'inline';
+}
+</script>
+</body>
+</html>
