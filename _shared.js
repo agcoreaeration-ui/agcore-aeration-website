@@ -112,7 +112,7 @@ function injectChatBot() {
 	{ keywords: ["offer","services"], answer: "Our services include Core aeration, Scarifying / dethatching, Top dressing and overseeding. " },
   ];
 
-  const SUGGESTED = ["What is core aeration?", "How much does it cost?", "Best time of year?", "Do you cover my area?", "How do I book?", "Should I Scarify"];
+  const SUGGESTED = ["What is core aeration?", "How much does it cost?", "Best time of year?", "Do you cover my area?", "How do I book?", "Should I Scarify?"];
 
   // Inject HTML
   const el = document.createElement('div');
